@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head></head>
+<body>
+    <div class="container-form">
+
+        <h3 class="txt_gris_medio">Acceder</h3>
+        <hr>
+        <div class="login-container">
+            {% if form.errors %}
+                <div 
+                class="alert alert-danger"><p>Tu usuario y contraseña no son correctos. Intenta otra vez</p>
+                </div>
+            {% endif %}
+            <form id="form-login" method="post" action="">
+                {% csrf_token %}
+                <div class="w450" id="username">
+                    {{form.username}}
+                </div>
+                <div class="w450" id="password">
+                    {{form.password}}
+                </div>
+                <button id="btn-registrar" class="button-large">Entrar</button>
+                <div class="clearfix"></div>
+            </form>
+            <a href="#" class="txt_verde txt_center mt15 mb20" style="display: block;">Aviso de privacidad</a>     
+        </div>
+    </div>
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> -->
+</body>
+</html>
