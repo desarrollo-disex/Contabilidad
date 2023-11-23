@@ -16,7 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from catalog import views
+from django.contrib.auth import views as auth_views
+from django.urls.conf import include
+
+app_name="catalog"
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('inicio/',views.home, name="home"),
+    path('',views.home,name="home"),
+    #path('fin/',views.homeout,name="homeout"),
+    #path('admin/', cierre de sesión/ name='logout'),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
+
