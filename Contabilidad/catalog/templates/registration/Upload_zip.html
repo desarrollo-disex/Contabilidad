@@ -1,0 +1,34 @@
+{% load static %}
+<!-- templates/upload.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Archivo_zip</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Sube tu Archivo aquí</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="file">Selecciona el archivo (.zip) a validar : </label>
+                <br>
+                <input type="file" name="file" accept=".zip" class="form-control-file">
+            </div>
+            <button type="submit" class="btn btn-primary">Cargar</button>
+        </form>
+        
+        {% if filename %}
+            <h3>Uploaded File: {{ filename }}</h3>
+            <div>
+                {{ data|safe }}
+            </div>
+        {% endif %}
+    </div>
+
+    <link rel="stylesheet" href="{% static 'js/bootstrap.min.js'%}">
+</body>
+</html>

@@ -118,14 +118,18 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+import os
 
 STATIC_URL = 'static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'catalog','media','archivos_zip')
+MEDIA_URL = 'catalog/media/archivos_zip/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# SESSION_ENGINE = "django.contrib.sessions.backends.db"
-# SESSION_SAVE_EVERY_REQUEST = True
-# SESSION_COOKIE_AGE = 1209600  # Tiempo de expiración en segundos
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_AGE = 7200 # Tiempo de expiración en segundos
