@@ -18,6 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from catalog import views
 from django.contrib.auth import views as auth_views
+#import settings
+from django.conf.urls.static import static
 
 app_name="catalog"
 
@@ -26,7 +28,10 @@ urlpatterns = [
     path('inicio/',views.home, name="home"),
     path('',views.home,name="home"),
     path('zip/',views.Upload_zip),
-    #path('admin/', cierre de sesión/ name='logout'),
+    path('zip/reset/', views.reiniciarSistema, name='reiniciarSistema'),
+    # path('zip/descargarReporte/',views.descargar_reporte,name='descargar_reporte'),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 
+#if settings.DEBUG:
+    #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

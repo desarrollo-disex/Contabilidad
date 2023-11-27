@@ -1,0 +1,23 @@
+{%load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema reiniciado</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+</head>
+<body>
+    
+    <div class="container text-center">
+        <h2 class="text-center text-dark">
+            SISTEMA REINICIADO CORRECTAMENTE
+        </h2>
+        <hr>
+        <a class="btn btn-primary" style="text-decoration:none;" onclick="history.back()"><- VOLVER ATRÁS </a>    
+        <a class="btn btn-primary" style="text-decoration:none;" href="/"><- VOLVER AL INICIO</a>
+    </div>
+    <link rel="stylesheet" href="{% static 'js/bootstrap.min.js'%}">
+</body>
+</html>

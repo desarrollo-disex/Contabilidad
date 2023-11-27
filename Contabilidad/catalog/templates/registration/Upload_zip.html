@@ -23,7 +23,13 @@
         
         {% if filename %}
             <h3>Uploaded File: {{ filename }}</h3>
+            <a class="btn btn-primary" style="text-decoration:none;"  href="reset/">LIMPIAR</a>
             <div>
+                <div class="container text-center">
+                    <a class="text-primary" href="descargarReporte/" style="margin-top:20px">
+                      Descargar informe</a>
+                      <br><br>
+                  </div>
                 {{ data|safe }}
             </div>
         {% endif %}

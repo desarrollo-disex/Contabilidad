@@ -125,6 +125,7 @@ STATIC_URL = 'static/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'catalog','media','archivos_zip')
 MEDIA_URL = 'catalog/media/archivos_zip/'
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
