@@ -21,15 +21,12 @@
             <button type="submit" class="btn btn-primary">Cargar</button>
         </form>
         
-        {% if filename %}
+        {% if filename is not none or filename is true%}
             <h3>Uploaded File: {{ filename }}</h3>
             <a class="btn btn-primary" style="text-decoration:none;"  href="reset/">LIMPIAR</a>
+            <a class="btn btn-primary"href="{% static 'resultados/no_encontradas.xlsx' %}" download>  DESCARGAR</a>
+            <a class="btn btn-primary" style="text-decoration:none;" onclick="history.back()"><- VOLVER ATRÁS </a>
             <div>
-                <div class="container text-center">
-                    <a class="text-primary" href="descargarReporte/" style="margin-top:20px">
-                      Descargar informe</a>
-                      <br><br>
-                  </div>
                 {{ data|safe }}
             </div>
         {% endif %}

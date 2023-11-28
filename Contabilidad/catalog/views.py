@@ -1,26 +1,21 @@
-import statistics
 from django.http.response import HttpResponse
-from django.shortcuts import render,redirect
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
-from django.template import RequestContext
-from django.test import RequestFactory
 import pandas as pd
 import os
-from Contabilidad import settings
-from Contabilidad.settings import MEDIA_ROOT, MEDIA_URL
+from Contabilidad.settings import MEDIA_ROOT
 import zipfile
 from openpyxl import load_workbook
 import mysql.connector
 from .mysql_connection import mysqlconection
 import shutil
-from django.http import FileResponse
+
 
 
 @login_required
 def home(request):
     return render(request,'registration/inicio.html')
-
 
 def process_excel_file(excel_path, existing_facturas):
     df = pd.read_excel(excel_path)
@@ -64,31 +59,14 @@ def process_excel_file(excel_path, existing_facturas):
     found_df = pd.DataFrame(found_data_list)
     not_found_df = pd.DataFrame(not_found_data_list)
 
-    found_file_path = os.path.join('catalog/media', 'convertido', 'encontradas.xlsx')
-    not_found_file_path = os.path.join('catalog/media', 'convertido', 'no_encontradas.xlsx')
+    found_file_path = os.path.join('catalog','media', 'convertido', 'encontradas.xlsx')
+    not_found_file_path = os.path.join('catalog','static', 'resultados', 'no_encontradas.xlsx')
 
     # Guardar ambos archivos
     found_df.to_excel(found_file_path, index=False, engine='openpyxl')
     not_found_df.to_excel(not_found_file_path, index=False, engine='openpyxl')
     
     return df
-  
-    
-def remove_files_and_directories(zip_file_path, extract_folder):
-    os.remove(zip_file_path)
-
-    for file_name in os.listdir(extract_folder):
-        file_path = os.path.join(extract_folder, file_name)
-        try:
-            if os.path.isfile(file_path):
-                os.unlink(file_path)
-            elif os.path.isdir(file_path):
-                os.rmdir(file_path)
-        except Exception as e:
-            print(f'Error al eliminar {file_path}: {e}')
-
-    os.rmdir(extract_folder)
-
 
 def Upload_zip(request):
     if request.method == 'POST' and 'file' in request.FILES:
@@ -129,7 +107,6 @@ def Upload_zip(request):
 
             else:
                 print('Falló MySQL_Connection')
-            remove_files_and_directories(zip_file_path, extract_folder)
 
             return render(request, 'registration/Upload_zip.html', {'filename': excel_files[0], 'data': df.to_html()})
         else:
@@ -138,19 +115,13 @@ def Upload_zip(request):
 
     return render(request, 'registration/Upload_zip.html')
 
-
 def reiniciarSistema(request):
     # Eliminar y recrear el directorio /media/convertido/
-    convertido_dir = "catalog/media/convertido/"
+    convertido_dir = "catalog/media/"
+    media_dir = "catalog/media/convertido"
+    
     shutil.rmtree(convertido_dir, ignore_errors=True)
-    os.makedirs(convertido_dir)
-
-    # Eliminar y recrear el directorio /media/archivos_zip/
-    archivos_zip_dir = "catalog/media/archivos_zip/"
-    shutil.rmtree(archivos_zip_dir, ignore_errors=True)
-    os.makedirs(archivos_zip_dir)
+    os.makedirs(media_dir)
 
     return render(request, "registration/sistemaReiniciado.html")
-
-
 

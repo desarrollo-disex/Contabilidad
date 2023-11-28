@@ -29,9 +29,8 @@ urlpatterns = [
     path('',views.home,name="home"),
     path('zip/',views.Upload_zip),
     path('zip/reset/', views.reiniciarSistema, name='reiniciarSistema'),
-    # path('zip/descargarReporte/',views.descargar_reporte,name='descargar_reporte'),
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 
-#if settings.DEBUG:
-    #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#     urlpatterns += media(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

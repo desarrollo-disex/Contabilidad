@@ -121,9 +121,10 @@ USE_TZ = True
 import os
 
 STATIC_URL = 'static/'
+ARCHIVO_FINAL_XLSX = 'media/convertido/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'catalog','media','archivos_zip')
-MEDIA_URL = 'catalog/media/archivos_zip/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'catalog','media')
+MEDIA_URL = 'catalog/media/'
 
 
 # Default primary key field type
