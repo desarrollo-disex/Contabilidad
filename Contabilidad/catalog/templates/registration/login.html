@@ -1,33 +1,45 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head></head>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+</head>
+
 <body>
     <div class="container-form">
-
         <h3 class="txt_gris_medio">Acceder</h3>
         <hr>
         <div class="login-container">
             {% if form.errors %}
-                <div 
-                class="alert alert-danger"><p>Tu usuario y contraseña no son correctos. Intenta otra vez</p>
+                <div class="alert alert-danger">
+                    <p>Tu usuario y contraseña no son correctos. Intenta otra vez</p>
                 </div>
             {% endif %}
+            
             <form id="form-login" method="post" action="">
                 {% csrf_token %}
-                <div class="w450" id="username">
-                    {{form.username}}
+                <div class="mb-3">
+                    <label for="{{ form.username.id_for_label }}" class="form-label">Usuario</label>
+                    {{ form.username }}
                 </div>
-                <div class="w450" id="password">
-                    {{form.password}}
+                <div class="mb-3">
+                    <label for="{{ form.password.id_for_label }}" class="form-label">Contraseña</label>
+                    {{ form.password }}
                 </div>
-                <button id="btn-registrar" class="button-large">Entrar</button>
+                <button type="submit" class="btn btn-primary">Entrar</button>
                 <div class="clearfix"></div>
             </form>
-            <a href="#" class="txt_verde txt_center mt15 mb20" style="display: block;">Aviso de privacidad</a>     
+            <a href="#" class="txt_verde txt_center mt-3 mb-3" style="display: block;">Aviso de privacidad</a>     
         </div>
     </div>
-    <!-- <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> -->
+    
+
+
+    <link rel="stylesheet" href="{% static 'js/bootstrap.min.js'%}">
 </body>
+
 </html>
