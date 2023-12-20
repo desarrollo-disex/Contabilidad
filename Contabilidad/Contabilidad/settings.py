@@ -118,13 +118,14 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-import os
 
 STATIC_URL = 'static/'
-ARCHIVO_FINAL_XLSX = 'media/convertido/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'catalog','media')
-MEDIA_URL = 'catalog/media/'
+#ARCHIVO_FINAL_XLSX = 'media/convertido/'
+
+#**opcional**
+# MEDIA_ROOT = os.path.join(BASE_DIR,'catalog','media')
+# MEDIA_URL = 'catalog/media/'
 
 
 # Default primary key field type
